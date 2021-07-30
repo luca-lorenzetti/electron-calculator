@@ -2,9 +2,10 @@ const { app, BrowserWindow } = require('electron');
 
 function createWindow () {
     const win = new BrowserWindow({
-      width: 500,
-      height: 800,
-      autoHideMenuBar: true
+      width: 505,
+      height: 620,
+      autoHideMenuBar: true,
+      resizable: false
     });
   
     win.loadFile('calculator.html')

@@ -1,6 +1,18 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+html{
+    overflow: hidden;
+}
+::-webkit-scrollbar {
+    width: 0px; /* Remove scrollbar space */
+    display: none;
+}
 body{
     font: 1.3rem Inconsolata, monospace;
-    color:rgba(255, 255, 255, 1)
+    color:rgba(255, 255, 255, 1);
 }
 
 main{

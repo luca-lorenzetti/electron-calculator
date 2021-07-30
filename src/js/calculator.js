@@ -27,19 +27,15 @@ function remvoeText(){
 
 function checkKeyUp(key){
     if( key != "=" && key != "del"){
-        console.log(key)
         addText(key);
-        console.log("aggiunto")
     }
     else if(key == "del"){
-        console.log("rim")
         remvoeText();
     }
 }
 
 $(document).ready(()=>{
     $('button').click((e)=>{
-
     })
 
 
