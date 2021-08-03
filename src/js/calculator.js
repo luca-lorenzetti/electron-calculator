@@ -4,7 +4,7 @@ console.log("÷".charCodeAt(0))
 function checkExpression(operator){
 
     
-    let op = "";
+    let op = operator;
     let lastText = $('#old_display_text').text();
     let currentText = $('#display_text').text();
 
@@ -20,7 +20,16 @@ function checkExpression(operator){
         if(lastText != 0 && !lastText.includes("=")){
          
             let expression = lastText.toString() + currentText.toString();
-            $('#old_display_text').text(getResult(expression) + op);
+            let result = getResult(expression);
+
+            if(result.toString() == 'Infinity'){
+                console.log("errore")
+                result = "Error";
+                $('#old_display_text').text(result )
+            }
+            else{
+                $('#old_display_text').text(result + op);
+            }
 
         }
         else{
@@ -33,9 +42,21 @@ function checkExpression(operator){
       
         if(!lastText.includes("=")){
             let expression = lastText.toString() + currentText.toString();
+            let result = getResult(expression);
 
-            $('#old_display_text').text(expression + " =");
-            $('#display_text').text( getResult(expression) );
+            if(result.toString() == 'Infinity'){
+                console.log("errore")
+
+                result = "Error";
+                $('#old_display_text').text("0")
+                $('#display_text').text( result );
+            }
+            else{
+                $('#old_display_text').text(result + " =");
+                $('#display_text').text( getResult(result) );
+            }
+
+  
         }
   
 
@@ -88,7 +109,7 @@ function addText(keyCode){
                 keyCode -= 48;
             }
 
-            if($('#display_text').text() == 0){
+            if($('#display_text').text() == 0 || $('#display_text').text() == 'Error'){
                 $('#display_text').text(String.fromCharCode(keyCode) );
             }
 
@@ -128,7 +149,13 @@ $(document).ready(()=>{
         let val = $(e.target).val();
 
         console.log(val.charCodeAt(0))
-        addText(val.charCodeAt(0));
+        if(val.charCodeAt(0) == '43' || val.charCodeAt(0) == '47' || val.charCodeAt(0) ==  '42' || val.charCodeAt(0) == '45'){
+            checkExpression(val);
+        }
+        else{
+            addText(val.charCodeAt(0));
+        }
+
     });
 
 
