@@ -11,6 +11,7 @@
   "author": "Luca Lorenzetti",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^13.1.7"
+    "electron": "^13.1.7",
+    "mathjs": "^9.4.4"
   }
 }

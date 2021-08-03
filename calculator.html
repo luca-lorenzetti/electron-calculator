@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="src/css/main_style.css">
     <title>Calculator</title>
 </head>
 <body>
     <main>
         <div class="display">
-            <span id="display_text">0</span>
+            <p id="old_display_text">0</p>
+            <p id="display_text">0</p>
         </div>
         <div class="buttons">
             <table>
@@ -24,7 +28,7 @@
                     <td><button value="4">4</button></td>
                     <td><button value="5">5</button></td>
                     <td><button value="6">6</button></td>
-                    <td><button value="X">X</button></td>
+                    <td><button value="*">X</button></td>
                 </tr>
                 <tr>
                     <td><button value="1">1</button></td>
@@ -43,6 +47,7 @@
 
     <footer>
         <script src="src/js/jquery_3.6.0.js"></script>
+        <script src="https://unpkg.com/mathjs@9.4.4/lib/browser/math.js" type="text/javascript"></script>
         <script src="src/js/calculator.js"></script>
     </footer>
 </body>
