@@ -144,16 +144,43 @@ function checkKeyUp(key){
 }
 
 function clearAllText(){
+    $('#display_text').text('0');
+    $('#old_display_text').text('0');
+}
 
+function clearOnlyText(){
+    $('#display_text').text('0');
 }
 
 $(document).ready(()=>{
     $('button').click((e)=>{
+
+
         let val = $(e.target).val();
 
-        console.log(val.charCodeAt(0))
-        if(val.charCodeAt(0) == '43' || val.charCodeAt(0) == '47' || val.charCodeAt(0) ==  '42' || val.charCodeAt(0) == '45'){
+        if(statusCalc == 'resolve'){
+            if( e.which == '106' || e.which == '111' || e.which ==  '107' || e.which == '109'){
+
+            }
+            else{
+                $('#display_text').text('0');
+            }
+            
+            statusCalc = 'processing';
+        }
+
+        if(val.charCodeAt(0) == '43' || val.charCodeAt(0) == '47' || val.charCodeAt(0) ==  '42' || val.charCodeAt(0) == '45' || val.charCodeAt(0) == '61' ){
+            
+            if(val.charCodeAt(0) == '61'){
+                statusCalc = 'resolve';
+            }
             checkExpression(val);
+        }
+        else if(val == 'C'){
+            clearAllText();
+        }
+        else if(val == 'CE'){
+            clearOnlyText();
         }
         else{
             addText(val.charCodeAt(0));
@@ -163,7 +190,6 @@ $(document).ready(()=>{
 
 
     $('html').keydown((e)=>{
-
 
         if(statusCalc == 'resolve'){
             if( e.which == '106' || e.which == '111' || e.which ==  '107' || e.which == '109'){
