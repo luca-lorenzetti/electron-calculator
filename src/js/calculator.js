@@ -1,6 +1,5 @@
 // OPERATIONS FUNCTIONS
 
-console.log("÷".charCodeAt(0))
 function checkExpression(operator){
 
     
@@ -160,7 +159,6 @@ $(document).ready(()=>{
 
 
     $('html').keydown((e)=>{
-
 
         if(e.which == 8){
             checkKeyUp("del");

@@ -5,7 +5,8 @@ function createWindow () {
       width: 505,
       height: 620,
       autoHideMenuBar: true,
-      resizable: false
+      resizable: false,
+
     });
   
     win.loadFile('calculator.html')

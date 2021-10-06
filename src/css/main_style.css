@@ -5,6 +5,8 @@
 }
 html{
     overflow: hidden;
+    width: 100%;
+    height: 100%;
 }
 ::-webkit-scrollbar {
     width: 0px; /* Remove scrollbar space */
@@ -13,12 +15,14 @@ html{
 body{
     font-family: 'Inconsolata', monospace;
     color:rgba(255, 255, 255, 1);
+    width: 100%;
+    height: 100%;
 }
 
 main{
-    background-color: rgba(0, 0, 0, 1);
-    width: 500px;
-    height: 600px;
+    background-color: rgba(0,0,0, 1);
+    width: 100%;
+    height: 100%;
 }
 
 .display{
@@ -26,7 +30,7 @@ main{
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
-    height: 20%;
+    height: 30%;
     font-size: 40px;
     padding: 20px;
     border-bottom: 1px solid grey;
@@ -38,15 +42,19 @@ main{
 }
 
 .buttons, table{
-    height: 80%;
+    height: 70%;
     width: 100%;
 }
-
+table{
+    width: 100%;
+    height: 100%;
+}
 td{
     text-align: center;
     width: calc(100% / 4);
     height: calc(100% / 4);
     border: 1px solid rgba(255, 255, 255, 0.4);
+    font-size: 30px;
 }
 
 button{
