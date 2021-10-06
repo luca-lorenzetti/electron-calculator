@@ -1,5 +1,5 @@
 // OPERATIONS FUNCTIONS
-
+let statusCalc = 'waiting';
 function checkExpression(operator){
 
     
@@ -143,6 +143,10 @@ function checkKeyUp(key){
     }
 }
 
+function clearAllText(){
+
+}
+
 $(document).ready(()=>{
     $('button').click((e)=>{
         let val = $(e.target).val();
@@ -160,11 +164,26 @@ $(document).ready(()=>{
 
     $('html').keydown((e)=>{
 
+
+        if(statusCalc == 'resolve'){
+            if( e.which == '106' || e.which == '111' || e.which ==  '107' || e.which == '109'){
+
+            }
+            else{
+                $('#display_text').text('0');
+            }
+            
+            statusCalc = 'processing';
+        }
+
         if(e.which == 8){
             checkKeyUp("del");
         }
         else if( e.which == '13' || e.which == '106' || e.which == '111' || e.which ==  '107' || e.which == '109'){
 
+            if(e.which == '13'){
+                statusCalc = 'resolve';
+            }
             checkExpression(e.which);
         }
         else{
