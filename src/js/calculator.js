@@ -1,18 +1,27 @@
 // OPERATIONS FUNCTIONS
+let fontText = $(window).width()/20;
+let fontOldText = fontText/2;
+
+$('#display_text').css('font-size',fontText);
+$('#old_display_text').css('font-size',fontOldText);
+$('button').css('font-size', fontText);
+
 let statusCalc = 'waiting';
+let maxText = $(window).width() / (parseInt($("#display_text").css("font-size").toString().slice(0,-2)));
+
 function checkExpression(operator){
 
-    
     let op = operator;
     let lastText = $('#old_display_text').text();
     let currentText = $('#display_text').text();
 
-    // let lastElement = lastText[lastText.length-1];
+    if(lastText == "number too large"){
+        lastText = "";
+    }
 
     const operators = ['+', '-' , '/', '*', '106', '111', '107', '109'];
 
     if(operators.includes(operator.toString())){
-
         if(!isNaN(operator)){
             op = convertCharacter(operator);
         }
@@ -21,18 +30,21 @@ function checkExpression(operator){
             let expression = lastText.toString() + currentText.toString();
             let result = getResult(expression);
 
-            if(result.toString() == 'Infinity'){
-                console.log("errore")
-                result = "Error";
-                $('#old_display_text').text(result);
-            }
-            else{
-                $('#old_display_text').text(result + op);
-            }
+
+                if(result.toString() == 'Infinity'){
+                    console.log("errore")
+                    result = "Error";
+                    $('#old_display_text').text(result);
+                }
+                else{
+                    $('#old_display_text').text(result + " " +op);
+                }
+
 
         }
         else{
-            $('#old_display_text').text(currentText+op);
+
+            $('#old_display_text').text(currentText+ " " + op);
         }
         $('#display_text').text("0");
    
@@ -43,22 +55,30 @@ function checkExpression(operator){
             let expression = lastText.toString() + currentText.toString();
             let result = getResult(expression);
 
-            if(result.toString() == 'Infinity'){
-                console.log("errore")
+            // if (result.toString().length < max){
+                if(result.toString() == 'Infinity'){
+                    console.log("errore")
+    
+                    result = "Error";
+                    $('#old_display_text').text("0")
+                    $('#display_text').text( result );
+                }
+                else{
 
-                result = "Error";
-                $('#old_display_text').text("0")
-                $('#display_text').text( result );
-            }
-            else{
-                $('#old_display_text').text(lastText + currentText + "=");
-                $('#display_text').text( getResult(result) );
-            }
-
-  
+                        lastText = getResult(lastText.slice(0,-2)) + lastText.slice(lastText.length-2,lastText.length);
+                        currentText = getResult(currentText);
+                        // console.log(lastText)
+                        console.log(currentText)
+                        $('#old_display_text').text(lastText + " " +currentText + " =");
+                        
+                    
+                    $('#display_text').text( getResult(result) );
+                }
+            // }
+            // else{
+            //     $('#old_display_text').text("number too large");
+            // }
         }
-  
-
     }
 
 
@@ -159,12 +179,10 @@ $(document).ready(()=>{
         let val = $(e.target).val();
 
         if(statusCalc == 'resolve'){
-            if( e.which == '106' || e.which == '111' || e.which ==  '107' || e.which == '109'){
-
-            }
-            else{
+            if( e.which != '106' && e.which != '111' && e.which !=  '107' && e.which != '109'){
                 $('#display_text').text('0');
             }
+
             
             statusCalc = 'processing';
         }
@@ -174,6 +192,7 @@ $(document).ready(()=>{
             if(val.charCodeAt(0) == '61'){
                 statusCalc = 'resolve';
             }
+
             checkExpression(val);
         }
         else if(val == 'C'){
@@ -192,13 +211,10 @@ $(document).ready(()=>{
     $('html').keydown((e)=>{
 
         if(statusCalc == 'resolve'){
-            if( e.which == '106' || e.which == '111' || e.which ==  '107' || e.which == '109'){
+            if( e.which != '106' && e.which != '111' && e.which !=  '107' && e.which != '109'){
+                $('#display_text').text('0');
 
             }
-            else{
-                $('#display_text').text('0');
-            }
-            
             statusCalc = 'processing';
         }
 
@@ -214,7 +230,9 @@ $(document).ready(()=>{
             checkExpression(e.which);
         }
         else{
-            checkKeyUp(e.which);
+            if($('#display_text').text().length < maxText){
+                checkKeyUp(e.which);
+            }
         }
     });
 });

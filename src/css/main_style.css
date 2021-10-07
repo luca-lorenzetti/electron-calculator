@@ -36,8 +36,18 @@ main{
     border-bottom: 1px solid grey;
 }
 
+#display_text{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 #old_display_text{
-    font-size: 40px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 30px;
+    text-align: right;
 }
 .special{
     background-color: rgb(35, 36, 41);
