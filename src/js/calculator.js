@@ -24,7 +24,7 @@ function checkExpression(operator){
             if(result.toString() == 'Infinity'){
                 console.log("errore")
                 result = "Error";
-                $('#old_display_text').text(result )
+                $('#old_display_text').text(result);
             }
             else{
                 $('#old_display_text').text(result + op);
@@ -51,7 +51,7 @@ function checkExpression(operator){
                 $('#display_text').text( result );
             }
             else{
-                $('#old_display_text').text(result + " =");
+                $('#old_display_text').text(lastText + currentText + "=");
                 $('#display_text').text( getResult(result) );
             }
 
@@ -209,6 +209,7 @@ $(document).ready(()=>{
 
             if(e.which == '13'){
                 statusCalc = 'resolve';
+                checkExpression(e.which);
             }
             checkExpression(e.which);
         }
